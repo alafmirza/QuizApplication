@@ -14,9 +14,21 @@ public class QuizService {
     @Autowired
     QuestionRepository questionRepository;
 
-
+ // find questions 
       List<Question> getQuestions(Long quizId){
         return questionRepository.findByQuizId(quizId);
     }
 
+    //submit answre
+
+    int  calculateScore(List<Question> questions, List<String> answers){
+    int score=0;
+    for(int i=0;i<questions.size();i++){
+        if(questions.get(i).getCorrectAnswer().equalsIgnoreCase(answers.get(i))){
+            score++;
+        }
+    }
+
+        return score;
+    }
 }
