@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.quiz.entities.Question;
+import com.quiz.entities.Quiz;
 import com.quiz.service.QuizService;
 
 @RestController
@@ -17,12 +18,19 @@ public class quizController {
     @Autowired
    QuizService quizService;
    
+   //get titles
+   @GetMapping("/Titles")
+public List<Quiz> getAllTitles(){
+    return quizService.getTitles();
+}
+
    //get questions 
 
     @GetMapping("/{quizId}")
     public List<Question> getAllQuestions(@PathVariable("quizId") Long quizId){
         return quizService.getQuestions(quizId);
     }
+    
 
     //submit questions
     
