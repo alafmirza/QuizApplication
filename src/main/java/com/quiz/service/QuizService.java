@@ -20,24 +20,12 @@ public class QuizService {
     @Autowired
     QuizRepository quizRepository;
 
- // find questions 
+// get questions 
      public  List<Question> getQuestions(Long quizId){
         return questionRepository.findByQuizId(quizId);
     }
 
-    //submit answre
-
-   public  int  calculateScore(List<Question> questions, List<String> answers){
-    int score=0;
-    for(int i=0;i<questions.size();i++){
-        if(questions.get(i).getCorrectAnswer().equalsIgnoreCase(answers.get(i))){
-            score++;
-        }
-    }
-
-        return score;
-    }
-
+// get titles
     public List<Quiz> getTitles(){
         return quizRepository.findAll();
     }
