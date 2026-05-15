@@ -20,15 +20,17 @@ public class QuizService {
     @Autowired
     QuizRepository quizRepository;
 
+    // get titles
+    public List<Quiz> getTitles(){
+        return quizRepository.findAll();
+    }
+
 // get questions 
      public  List<Question> getQuestions(Long quizId){
         return questionRepository.findByQuizId(quizId);
     }
 
-// get titles
-    public List<Quiz> getTitles(){
-        return quizRepository.findAll();
-    }
+
 
    
 }
