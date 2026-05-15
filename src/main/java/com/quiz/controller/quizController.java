@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.quiz.dto.QuiestionResponseDTO;
 import com.quiz.entities.Question;
 import com.quiz.entities.Quiz;
 import com.quiz.service.QuizService;
@@ -27,7 +28,7 @@ public List<Quiz> getAllTitles(){
    //get questions 
 
     @GetMapping("/{quizId}")
-    public List<Question> getAllQuestions(@PathVariable("quizId") Long quizId){
+    public List<QuiestionResponseDTO> getAllQuestions(@PathVariable("quizId") Long quizId){
         return quizService.getQuestions(quizId);
     }
     

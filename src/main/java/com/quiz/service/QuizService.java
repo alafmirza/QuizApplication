@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import com.quiz.dao.QuestionRepository;
 import com.quiz.dao.QuizRepository;
+import com.quiz.dto.QuiestionResponseDTO;
 import com.quiz.entities.Question;
 import com.quiz.entities.Quiz;
 
@@ -26,8 +27,17 @@ public class QuizService {
     }
 
 // get questions 
-     public  List<Question> getQuestions(Long quizId){
-        return questionRepository.findByQuizId(quizId);
+     public  List<QuiestionResponseDTO> getQuestions(Long quizId){
+        List<Question> questionList = questionRepository.findByQuizId(quizId);
+
+ return  questionList.stream().map(e->new QuiestionResponseDTO(
+    e.getQuestion(),
+    List.of(
+        e.getOptionA(),
+        e.getOptionB(),
+        e.getOptionC(),
+        e.getOptionD()
+   ))).toList();    
     }
 
 
