@@ -13,6 +13,7 @@ public class Result {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
     private String userId;
-    private String quizId;
+    private String username;
+    private Long quizId;
     private int score;
 }
