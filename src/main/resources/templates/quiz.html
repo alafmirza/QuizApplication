@@ -4,29 +4,34 @@
     <title>Quiz</title>
 
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet">
-
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        rel="stylesheet">
 </head>
+
 <body class="container mt-5">
 
 <h1 class="mb-4 text-center">Quiz</h1>
 
 <form action="/submit-quiz" method="post">
 
-    <input type="hidden" name="quizId"
+    <input type="hidden"
+           name="quizId"
            th:value="${quizId}">
 
-    
- <div>
-      <input class="text-center " type="text" name="userId" placeholder="Enter User ID">
-   <input class="text-center " type="text" name="username" placeholder="Enter Username">
- </div>
-      
+    <div class="mb-3">
+        <input class="form-control mb-2"
+               type="text"
+               name="userId"
+               placeholder="Enter User ID">
 
+        <input class="form-control"
+               type="text"
+               name="username"
+               placeholder="Enter Username">
+    </div>
 
     <div th:each="q, stat : ${questions}"
-         class="card mb-3 mt-3 p-3">
+         class="card mb-3 p-3">
 
         <h5>
             <span th:text="${stat.count}"></span>.
@@ -36,7 +41,7 @@
         <div th:each="option : ${q.options}">
 
             <input type="radio"
-                   th:name="answers"
+                   th:name="'answers[' + ${q.id} + ']'"
                    th:value="${option}"
                    required>
 
@@ -50,9 +55,7 @@
 
     <button type="submit"
             class="btn btn-primary">
-
         Submit Quiz
-
     </button>
 
 </form>

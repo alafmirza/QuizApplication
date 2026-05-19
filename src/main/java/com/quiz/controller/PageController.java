@@ -1,6 +1,7 @@
 package com.quiz.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,7 +44,7 @@ public class PageController {
          @RequestParam Long quizId,
         @RequestParam String userId ,
         @RequestParam String username,
-        @RequestParam List<String> answers
+        @RequestParam Map<String,String> answers
     ){
         QuizSubmission quizSubmission = new QuizSubmission();
         quizSubmission.setUserId(userId);

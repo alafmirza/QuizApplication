@@ -1,6 +1,7 @@
 package com.quiz.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -36,6 +37,7 @@ public class QuizService {
         List<Question> questionList = questionRepository.findByQuizId(quizId);
 
  return  questionList.stream().map(e->new QuiestionResponseDTO(
+    e.getId(),
     e.getQuestion(),
     List.of(
         e.getOptionA(),
@@ -51,15 +53,25 @@ public int calculateScore(QuizSubmission submission){
 
    Long Id = submission.getQuizId();
   List<Question> questionList = questionRepository.findByQuizId(Id);
-  int score = 0;
-  for (int i = 0; i < Math.min(questionList.size(),submission.getAnswers().size()); i++)
-    {
-   String correctAnswer= questionList.get(i).getCorrectAnswer();
-   String userAnswer = submission.getAnswers().get(i);
-   if(userAnswer.equalsIgnoreCase(correctAnswer)){
-    score++;
-   }
-  }
+  Map<String, String> answers = submission.getAnswers();
+
+    int score = 0;
+
+   for (Question q : questionList) {
+
+   
+
+   String userAnswer = answers.get("answers[" + q.getId() + "]");
+
+    String correctAnswer = q.getCorrectAnswer();
+
+    if (userAnswer != null &&
+        correctAnswer != null &&
+        userAnswer.trim().equalsIgnoreCase(correctAnswer.trim())) {
+
+        score++;
+    }
+}
         Result result = new Result();
         result.setUserId(submission.getUserId());
         result.setUsername(submission.getUsername());

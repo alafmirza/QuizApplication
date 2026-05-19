@@ -1,6 +1,5 @@
 package com.quiz.dto;
-
-import java.util.List;
+import java.util.Map;
 
 import lombok.Data;
 
@@ -9,6 +8,6 @@ public class QuizSubmission {
 private String userId;
 private String username;
 private Long quizId;
-List<String> answers;
+Map<String,String> answers;
     
 }
