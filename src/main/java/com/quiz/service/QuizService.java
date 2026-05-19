@@ -52,7 +52,8 @@ public int calculateScore(QuizSubmission submission){
    Long Id = submission.getQuizId();
   List<Question> questionList = questionRepository.findByQuizId(Id);
   int score = 0;
-  for (int i=0;i<questionList.size();i++){
+  for (int i = 0; i < Math.min(questionList.size(),submission.getAnswers().size()); i++)
+    {
    String correctAnswer= questionList.get(i).getCorrectAnswer();
    String userAnswer = submission.getAnswers().get(i);
    if(userAnswer.equalsIgnoreCase(correctAnswer)){

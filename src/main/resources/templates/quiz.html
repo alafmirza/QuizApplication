@@ -10,18 +10,23 @@
 </head>
 <body class="container mt-5">
 
-<h1 class="mb-4">Quiz</h1>
+<h1 class="mb-4 text-center">Quiz</h1>
 
 <form action="/submit-quiz" method="post">
 
     <input type="hidden" name="quizId"
            th:value="${quizId}">
 
-    <!-- Temporary User ID -->
-    <input type="hidden" name="userId" value="1">
+    
+ <div>
+      <input class="text-center " type="text" name="userId" placeholder="Enter User ID">
+   <input class="text-center " type="text" name="username" placeholder="Enter Username">
+ </div>
+      
+
 
     <div th:each="q, stat : ${questions}"
-         class="card mb-3 p-3">
+         class="card mb-3 mt-3 p-3">
 
         <h5>
             <span th:text="${stat.count}"></span>.

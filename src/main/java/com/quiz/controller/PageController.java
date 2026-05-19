@@ -40,13 +40,15 @@ public class PageController {
     //submit page
     @PostMapping("/submit-quiz")
     public String submit(Model model,
+         @RequestParam Long quizId,
         @RequestParam String userId ,
-        @RequestParam Long quizId,
+        @RequestParam String username,
         @RequestParam List<String> answers
     ){
         QuizSubmission quizSubmission = new QuizSubmission();
         quizSubmission.setUserId(userId);
         quizSubmission.setQuizId(quizId);
+        quizSubmission.setUsername(username);
         quizSubmission.setAnswers(answers);
         int score = quizService.calculateScore(quizSubmission);
 
