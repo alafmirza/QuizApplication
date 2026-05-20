@@ -57,4 +57,19 @@ public class PageController {
 
         return "result.html";
     }
+
+    //login page 
+    @GetMapping("/login")
+    public String loginPage(){
+        return "login.html";
+    }
+
+
+    //signup page 
+    @GetMapping("/signup")
+    public String signupPage(){
+        return "signup.html";
+    }
+
+
 }

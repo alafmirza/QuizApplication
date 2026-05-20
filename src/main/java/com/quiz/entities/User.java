@@ -4,15 +4,47 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.Data;
 
 @Entity
-@Data
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
-    private String Username;
-    private String Password;
+    private String username;
+    private String password;
+    private String role;
+    public Long getId() {
+        return Id;
+    }
+    public String getUsername() {
+        return username;
+    }
+    public String getPassword() {
+        return password;
+    }
+    public String getRole() {
+        return role;
+    }
+    public void setId(Long id) {
+        Id = id;
+    }
+    public void setUsername(String username) {
+        this.username = username;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    public void setRole(String role) {
+        this.role = role;
+    }
+    public User(Long id, String username, String password, String role) {
+        Id = id;
+        this.username = username;
+        this.password = password;
+        this.role = role;
+    }
+     public User(){
+        
+     }
     
 }
